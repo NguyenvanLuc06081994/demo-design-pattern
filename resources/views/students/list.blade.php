@@ -11,6 +11,7 @@
             <th scope="col">Birth Day</th>
             <th scope="col">Gender</th>
             <th scope="col">Address</th>
+            <th scope="col">Class</th>
             <th scope="col" colspan="2">Action</th>
         </tr>
         </thead>
@@ -23,6 +24,7 @@
             <td>{{$student->birthday}}</td>
             <td>{{$student->gender}}</td>
             <td>{{$student->address}}</td>
+            <td>{{$student->class_id}}</td>
             <td><a href="{{route('students.edit',$student->id)}}">EDIT</a></td>
             <td><a onclick="return confirm('are you sure?')" href="{{route('students.destroy',$student->id)}}">DELETE</a></td>
         </tr>

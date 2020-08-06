@@ -26,7 +26,8 @@ class StudentController extends Controller
 
     public function create()
     {
-        return view('students.create');
+        $classes = $this->studentService->getAllClass();
+        return view('students.create',compact('classes'));
     }
 
     public function store(Request $request)
@@ -51,8 +52,7 @@ class StudentController extends Controller
 
     public function destroy($id)
     {
-        $student = $this->studentService->findById($id);
-        $student->delete();
+      $this->studentService->destroy($id);
         Session::flash('success', 'success');
         return redirect()->route('students.list');
     }

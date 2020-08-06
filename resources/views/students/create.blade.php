@@ -27,11 +27,16 @@
                         <input type="text" class="form-control" name="address" required>
                     </div>
                     <div class="form-group">
-
+                        <label>Class</label>
+                        <select name="class_id" id="">
+                            @foreach($classes as $key => $class)
+                                <option value="{{$class->id}}">{{$class->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="exampleFormControlFile1">Student Image</label>
-
                         <input type="file" name="image" class="form-control-file" required>
-
                     </div>
                     <button type="submit" class="btn btn-primary">ADD</button>
                 </form>

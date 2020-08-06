@@ -28,4 +28,9 @@ class StudentRepository
         $student->save();
     }
 
+    public function destroy($student)
+    {
+        $student->delete();
+    }
+
 }

@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->string('name');
-            $table->date('birth of date');
+            $table->date('birthday');
             $table->string('gender');
             $table->string('address');
             $table->timestamps();
