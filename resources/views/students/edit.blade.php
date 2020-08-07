@@ -26,7 +26,10 @@
                     </div>
                     <div class="form-group">
                         <label>Class</label>
-                        <input type="text" class="form-control" name="class_id" value="{{$student->class_id}}" readonly>
+                        <select name="class_id" id=""></select>
+                        @foreach($classes as $key => $class)
+                            <option @if($student->class_id == $class->id) {{'selected'}} @endif value="{{$class->id}}">{{{$class->name}}}</option>
+                        @endforeach
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Student Image</label>

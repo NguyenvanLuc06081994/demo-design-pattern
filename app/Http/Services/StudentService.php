@@ -79,4 +79,10 @@ class StudentService
         $student = $this->studentRepository->findById($id);
         $this->studentRepository->destroy($student);
     }
+
+//    public function filterByClass($request)
+//    {
+//
+//
+//    }
 }

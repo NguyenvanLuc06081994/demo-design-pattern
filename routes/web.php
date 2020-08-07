@@ -33,10 +33,12 @@ Route::prefix('students')->group(function (){
     Route::get('/{id}/edit','StudentController@edit')->name('students.edit');
     Route::post('/{id}/edit','StudentController@update')->name('students.update');
     Route::get('/{id}/delete','StudentController@destroy')->name('students.destroy');
+    Route::get('/filter','StudentController@filterByClass')->name('students.filterByClass');
 });
 
 Route::prefix('/classes')->group(function (){
     Route::get('/',"ClassController@getAll")->name('classes.list');
     Route::get('/{id}/edit','ClassController@showFormEdit')->name('classes.showFormEdit');
     Route::post('/{id}/edit','ClassController@edit')->name('classes.edit');
+
 });

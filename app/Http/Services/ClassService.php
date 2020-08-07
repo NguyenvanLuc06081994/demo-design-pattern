@@ -5,6 +5,7 @@ namespace App\Http\Services;
 
 
 use App\Http\Repositories\ClassRepository;
+use App\Student;
 
 class ClassService
 {

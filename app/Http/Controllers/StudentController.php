@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\ClassRepository;
 use App\Http\Services\StudentService;
 use App\Student;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,10 +13,13 @@ class StudentController extends Controller
 {
 
     protected $studentService;
+    protected $classRepository;
 
-    public function __construct(StudentService $studentService)
+    public function __construct(StudentService $studentService,
+                                ClassRepository $classRepository)
     {
         $this->studentService = $studentService;
+        $this->classRepository = $classRepository;
     }
 
     public function index()
@@ -39,8 +43,9 @@ class StudentController extends Controller
 
     public function edit($id)
     {
+        $classes = $this->studentService->getAllClass();
         $student = $this->studentService->findById($id);
-        return view('students.edit', compact('student'));
+        return view('students.edit', compact('student','classes'));
     }
 
     public function update(Request $request, $id)
@@ -55,6 +60,16 @@ class StudentController extends Controller
       $this->studentService->destroy($id);
         Session::flash('success', 'success');
         return redirect()->route('students.list');
+    }
+
+    public function filterByClass(Request $request)
+    {
+        $idClass = $request->class_id;
+        $classFilter = $this->classRepository->findById($idClass);
+        $students = Student::where('class_id',$classFilter->id)->get();
+        $totalStudents = count($students);
+        $classes = $this->studentService->getAllClass();
+        return view('student.list',compact('students', 'classes', 'totalStudents', 'classFilter'));
     }
 
 }
